@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+    <title>Welcome to the Twitter Stream</title>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+
+</head>
+<body>
+    <h1><%- header %></h1>
+
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+    <div id="new_pablo_container">
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+      var socket = io();
+      $('form').submit(function(e){
+        e.preventDefault();
+        console.log('value'+ $('#m').val());
+        socket.emit('search_send', $('#m').val());
+
+        return false;
+      });
+      socket.on('connect', function() {
+        alert('connected to socket on the client side');
+      });
+      socket.on('new_pablo', function(data) {
+        console.log('inside new_pablo');
+        var html = '<h1>'+ data.name+'</h1><p>'+data.text+'</p>';
+        $('#new_pablo_container').prepend(html);
+   });
+
+
+    </script>
+</body>
+</html>
