@@ -75,12 +75,6 @@ io.on('connect', function(socket) {
     stream.on('tweet', function(tweet) {
       console.log('new tweet object, pass it to client')
 
-
-      // important things that you can get from a twitter stream in this application
-      //user.name
-      //user.screen_name
-      //text
-      //user.profile_image_url
       var new_tweet = {
         name: tweet.user.name,
         screen_name: tweet.user.screen_name,
@@ -91,24 +85,4 @@ io.on('connect', function(socket) {
       socket.emit('new_pablo', new_tweet);
     });
   });
-
-  // stream.on('tweet', function(tweet) {
-  //   console.log('new tweet object, pass it to client')
-
-
-    // important things that you can get from a twitter stream in this application
-    //user.name
-    //user.screen_name
-    //text
-    //user.profile_image_url
-    // var new_tweet = {
-    //   name: tweet.user.name,
-    //   screen_name: tweet.user.screen_name,
-    //   text: tweet.text,
-    //   user_profile_image: tweet.user.profile_image_url
-    // }
-    //
-    // socket.emit('new_pablo', new_tweet);
-  //
-  // });
 });
